@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+dynamic totalPrice = 0;
+List Items = [];
+List Count = [];
 
 class ItemCard extends StatefulWidget {
   final itemName;
@@ -19,12 +22,31 @@ class _ItemCardState extends State<ItemCard> {
     setState(() {
       if (_n != 0) {
         _n--;
+        totalPrice -= widget.itemPrice;
+        if(Count[Items.indexOf(widget.itemName)] > 1){
+          Count[Items.indexOf(widget.itemName)]--;
+        }
+        else if(Count[Items.indexOf(widget.itemName)] == 1){
+          Count.removeAt(Items.indexOf(widget.itemName));
+          Items.remove(widget.itemName);
+        }
+        else{
+          null;
+        }
       }
     });
   }
   void add() {
     setState(() {
       _n++;
+      totalPrice += widget.itemPrice;
+      if(Items.contains(widget.itemName)){
+        Count[Items.indexOf(widget.itemName)]++;
+      }
+      else{
+        Items.add(widget.itemName);
+        Count.insert(Items.indexOf(widget.itemName), 1);
+      }
     });
   }
 
@@ -104,6 +126,7 @@ class _ItemCardState extends State<ItemCard> {
                       height: 25,
                       child: FittedBox(
                         child: FloatingActionButton(
+                          heroTag: "rem ${widget.itemName}",
                           onPressed: minus,
                           child: Icon(Icons.remove),
                         ),
@@ -115,6 +138,7 @@ class _ItemCardState extends State<ItemCard> {
                       height: 25,
                       child: FittedBox(
                         child: FloatingActionButton(
+                          heroTag: "add ${widget.itemName}",
                           onPressed: add,
                           child: Icon(Icons.add),
                         ),

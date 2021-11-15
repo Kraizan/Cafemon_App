@@ -1,5 +1,6 @@
 import 'package:cafemon_app/item_card.dart';
 import 'package:flutter/material.dart';
+import 'checkout_page.dart';
 
 class ItemListPage extends StatefulWidget {
   const ItemListPage({Key? key}) : super(key: key);
@@ -21,21 +22,21 @@ class _ItemListPageState extends State<ItemListPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
-                'Cafe',
-            style: TextStyle(
-              letterSpacing: 2,
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
+              'Cafe',
+              style: TextStyle(
+                letterSpacing: 2,
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
               ),
             ),
             const Text(
               'M',
               style: TextStyle(
-                  letterSpacing: 2,
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                letterSpacing: 2,
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
               ),
             ),
             SizedBox(
@@ -143,8 +144,15 @@ class _ItemListPageState extends State<ItemListPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                 ),
                 ElevatedButton(
-                  onPressed: () {
-                    print('Button Press');
+                  onPressed: () async {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => CheckoutPage(totalPrice: totalPrice, items: Items, count: Count)),
+                    );
+                    for(int i=0; i<Items.length; i++){
+                      print(Items[i]);
+                      print(Count[i]);
+                    }
                   },
                   child: const Text('Place Order'),
                   style: ButtonStyle(
