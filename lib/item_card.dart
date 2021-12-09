@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 dynamic totalPrice = 0;
 List Items = [];
 List Count = [];
+List Price = [];
 
 class ItemCard extends StatefulWidget {
   final itemName;
@@ -29,6 +30,7 @@ class _ItemCardState extends State<ItemCard> {
         else if(Count[Items.indexOf(widget.itemName)] == 1){
           Count.removeAt(Items.indexOf(widget.itemName));
           Items.remove(widget.itemName);
+          Price.remove(widget.itemPrice);
         }
         else{
           null;
@@ -46,6 +48,7 @@ class _ItemCardState extends State<ItemCard> {
       else{
         Items.add(widget.itemName);
         Count.insert(Items.indexOf(widget.itemName), 1);
+        Price.add(widget.itemPrice);
       }
     });
   }

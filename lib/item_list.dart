@@ -147,7 +147,7 @@ class _ItemListPageState extends State<ItemListPage> {
                   onPressed: () async {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => CheckoutPage(totalPrice: totalPrice, items: Items, count: Count)),
+                      MaterialPageRoute(builder: (context) => CheckoutPage(totalPrice: totalPrice, items: Items, count: Count, price: Price)),
                     );
                     for(int i=0; i<Items.length; i++){
                       print(Items[i]);
